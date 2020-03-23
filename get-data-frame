@@ -1,0 +1,34 @@
+import requests
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from bs4 import BeautifulSoup
+import folium
+from sklearn.cluster import KMeans
+from geopy.geocoders import Nominatim
+import matplotlib.cm as cm
+import matplotlib.colors as colors
+
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
+url = "https://en.wikipedia.org/w/index.php?title=List_of_postal_codes_of_Canada:_M&oldid=945633050."
+r = requests.get(url,headers=headers)
+
+pd.set_option('display.max_rows', 10)
+
+pd.set_option('display.max_rows', 10)
+soup = BeautifulSoup(r.content,"html.parser")
+table = soup.find_all('table')[0]
+rows = table.find_all('tr')
+row_list = list()
+
+for tr in rows:
+    td = tr.find_all('td')
+    row = [i.text for i in td]
+    row_list.append(row)
+
+df_bs = pd.DataFrame(row_list,columns=['PostalCode','Borough','Neighborhood'])
+df = df_bs[df_bs.Borough != 'Not assigned']
+df.drop_duplicates(subset=None,keep='first',inplace=False)
+dfa = df.groupby(['PostalCode','Borough']).agg(lambda x: tuple(x)).applymap(list).reset_index()
+
+print(dfa)
