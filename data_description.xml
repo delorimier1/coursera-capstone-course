@@ -1,0 +1,3 @@
+This analysis will use the Category features of the Foursquare API's venue descriptors. It will group the neighborhoods based on the k-means clustering method. 
+
+In addition, data from the uszipcodes Python package will be joined on the Dallas and Austin zip code Foursquare zips. By checking the median income of each zip code and combining that with the groupings derived from the clustered neighborhood categories, the realty company will be able to offer excellent neighborhood suggestions to their customers.
