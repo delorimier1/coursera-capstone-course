@@ -1,0 +1,4 @@
+Final Project Description
+A realty agent wants to take advantage of the high number of people moving to Austin from Dallas. The agent wants to place people moving to Austin in similar income brackets as the people in the neighborhoods, and also wants people to feel like they are in a neighborhood that has venues similar to where they were coming from.
+
+This analysis will utilize location data from the Foursqure API, including venue descriptors and categorizations. It will cluster together similar zip codes from both Dallas and Austin, in order to create similar categorizations. In addition, median income zip-code level data from the uszipcode Python package will be included, so the realtor can make sure his clients are going to an area that they can afford.
